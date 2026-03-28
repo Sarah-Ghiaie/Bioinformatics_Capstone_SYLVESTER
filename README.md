@@ -97,50 +97,6 @@ Phage Receptor Identification
 
 ---
 
-## Reproduction Instructions
-
-### 1. Clone this repository
-```bash
-git clone https://github.com/YOUR_USERNAME/Bioinformatics_Capstone_SYLVESTER.git
-cd Bioinformatics_Capstone_SYLVESTER
-```
-
-### 2. Download genome assemblies
-Download the 13 genome assemblies from NCBI RefSeq using the accessions in `data/accessions.txt`. Place all `.fna` files in a local working directory (e.g. `capstone_genomes/`).
-
-### 3. Set up environments
-```bash
-conda env create -f environment/busco_env.yml
-conda env create -f environment/bakta_env.yml
-```
-
-### 4. Run assembly QC
-```bash
-conda activate busco
-Rscript scripts/genome_qc.R /path/to/capstone_genomes/
-```
-
-### 5. Run BUSCO
-```bash
-busco --download bacteria_odb10
-for f in *.fna; do
-    busco -i "$f" -m genome -l bacteria_odb10 -o "busco_${f%.fna}" --download_path busco_downloads -c 4
-done
-```
-
-### 6. Summarize BUSCO results
-```bash
-Rscript scripts/busco_summary.R
-```
-
-### 7. Run Bakta annotation
-```bash
-conda activate bakta
-bash scripts/run_bakta.sh
-```
-
----
-
 ## Dependencies
 
 | Tool | Version | Purpose |
