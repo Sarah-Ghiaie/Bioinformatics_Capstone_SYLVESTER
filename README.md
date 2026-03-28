@@ -45,6 +45,12 @@ Bioinformatics_Capstone_SYLVESTER/
 
 ---
 
+## Data Source and Sequence Generation
+
+13 *Salmonella enterica* genome assemblies were provided as part of a course dataset and sourced from NCBI RefSeq. RefSeq assemblies undergo quality review before inclusion in the database. Sequencing methods vary by assembly but are documented on each assembly's NCBI page using the accessions listed in `data/accessions.txt`. Assemblies are provided in FASTA format (.fna) representing completed or draft whole genome sequences.
+
+---
+
 ## Genome Dataset
 
 13 *Salmonella enterica* genome assemblies were downloaded from NCBI RefSeq. Accession numbers are listed in `data/accessions.txt`. Raw `.fna` files are not included in this repository due to file size — they can be downloaded directly from NCBI using the accessions provided.
@@ -97,6 +103,66 @@ Phage Receptor Identification
 
 ---
 
+## How to Reproduce Results
+
+### 1. Clone this repository
+```bash
+git clone https://github.com/Sarah-Ghiaie/Bioinformatics_Capstone_SYLVESTER.git
+cd Bioinformatics_Capstone_SYLVESTER
+```
+
+### 2. Download genome assemblies
+Download the 13 genome assemblies from NCBI RefSeq using the accessions in `data/accessions.txt`. Place all `.fna` files in a local working directory (e.g. `raw_data/`).
+
+### 3. Set up environments
+```bash
+conda env create -f environment/busco_env.yml
+conda env create -f environment/bakta_env.yml
+conda env create -f environment/quast_env.yml
+```
+
+### 4. Run assembly QC
+```bash
+conda activate busco
+Rscript scripts/genome_qc.R /path/to/raw_data/
+```
+
+### 5. Run BUSCO
+```bash
+busco --download bacteria_odb10
+for f in *.fna; do
+    busco -i "$f" -m genome -l bacteria_odb10 -o "busco_${f%.fna}" --download_path busco_downloads -c 4
+done
+Rscript scripts/busco_summary.R
+```
+
+### 6. Run QUAST
+```bash
+conda activate quast
+bash scripts/run_quast.sh
+```
+
+### 7. Run Bakta annotation
+```bash
+conda activate bakta
+bash scripts/run_bakta.sh
+```
+
+---
+
+## File Naming Conventions and Structure
+
+- Raw genome files follow NCBI RefSeq naming: `GCF_XXXXXXXXX.X_ASMxxxxvX_genomic.fna`
+- BUSCO output folders: `busco_GCF_XXXXXXXXX.X_ASMxxxxvX_genomic/`
+- Bakta output folders: `bakta_GCF_XXXXXXXXX.X_ASMxxxxvX_genomic/`
+- QUAST output: `quast_results/`
+- Results files use descriptive names: `genome_qc_results.tsv`, `busco_summary.tsv`
+- Figures use descriptive prefixes: `plot_genome_size.png`, `busco_completeness.png`
+
+Raw data files (.fna, BUSCO outputs, Bakta outputs) are stored locally and not included in this repository due to file size. Only processed results, scripts, and documentation are tracked in Git.
+
+---
+
 ## Dependencies
 
 | Tool | Version | Purpose |
@@ -105,6 +171,7 @@ Phage Receptor Identification
 | ggplot2 | CRAN | Plotting |
 | BUSCO | 5.x | Genome completeness assessment |
 | Bakta | 1.12.0 | Structural annotation |
+| QUAST | 4.6.3 | Assembly contiguity and correctness evaluation |
 | Roary/Panaroo | TBD | Pangenome analysis |
 
 ---

@@ -1,0 +1,15 @@
+#!/bin/bash
+# Run QUAST on QC-passing genomes
+# Usage: bash scripts/run_quast.sh
+# Run from raw_data directory with quast environment activated
+
+quast.py GCF_000007545.1_ASM754v1_genomic.fna \
+         GCF_000020745.1_ASM2074v1_genomic.fna \
+         GCF_000020885.1_ASM2088v1_genomic.fna \
+         GCF_000020925.1_ASM2092v1_genomic.fna \
+         GCF_000022165.1_ASM2216v1_genomic.fna \
+         GCF_000170215.1_ASM17021v1_genomic.fna \
+         GCF_000171415.1_ASM17141v1_genomic.fna \
+         GCF_000171515.1_ASM17151v1_genomic.fna \
+         GCF_000171535.2_ASM17153v2_genomic.fna \
+         -o quast_results
