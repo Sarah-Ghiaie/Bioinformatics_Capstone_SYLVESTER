@@ -39,12 +39,29 @@ No duplicated BUSCOs were detected in any genome, indicating no contamination or
 
 ---
 
-## 3. Structural Annotation (In Progress)
+## 3. QUAST Assembly Evaluation
 
-Bakta annotation is currently being run on the 9 passing genomes. Results will be updated upon completion.
+QUAST was run on the 9 passing genomes to assess contiguity and correctness. Results confirmed findings from the initial QC — most genomes are highly contiguous with low ambiguous base counts.
+
+| Metric | Range across 9 genomes |
+|--------|----------------------|
+| Total length | 4.73 – 4.96 Mb |
+| Number of contigs | 1 – 63 |
+| Largest contig | 741,259 – 4,870,265 bp |
+| N50 | 370,713 – 4,870,265 bp |
+| GC content | 52.00 – 52.27% |
+| N's per 100 kbp | 0.00 – 0.23 |
+
+GCF_000171415.1 and GCF_000171515.1 showed the highest contig counts (63 and 50 respectively) and lowest N50 values, consistent with their lower BUSCO scores. All other genomes were highly contiguous with 1–5 sequences. Full results are available in `assembly_evaluation/report.tsv`.
 
 ---
 
-## 4. Pangenome Analysis (Pending)
+## 4. Structural Annotation (Bakta)
 
-Pangenome analysis and phage receptor identification are pending completion of structural annotation.
+Bakta v1.12.0 successfully annotated all 9 passing genomes using the light reference database. Annotation output files for each genome include GFF3, GenBank, protein FASTA, nucleotide FASTA, TSV annotation table, and a circular genome plot. Annotated GFF3 files will be used as input for pangenome analysis.
+
+---
+
+## 5. Pangenome Analysis (Pending)
+
+Pangenome analysis and phage receptor identification are pending.

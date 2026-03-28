@@ -51,7 +51,27 @@ BUSCO results were summarized and visualized using `scripts/busco_summary.R`.
 
 ---
 
-## 4. Structural Annotation (Bakta)
+## 4. Assembly Contiguity and Correctness Assessment (QUAST)
+
+Assembly contiguity and correctness were evaluated using QUAST v4.6.3 on the 9 genomes passing BUSCO QC. QUAST was run without a reference genome.
+
+```bash
+quast.py *.fna -o quast_results
+```
+
+Metrics reported include:
+- Number of contigs at multiple size thresholds
+- Total assembly length
+- Largest contig
+- N50, N90, L50, L90
+- GC content (%)
+- N's per 100 kbp (ambiguous bases)
+
+Results are available in `assembly_evaluation/report.tsv` and `assembly_evaluation/report.html`.
+
+---
+
+## 5. Structural Annotation (Bakta)
 
 The 9 genomes passing QC were annotated using Bakta v1.12.0 with the light reference database. Annotation was performed with 4 threads per genome.
 
@@ -64,7 +84,7 @@ Bakta identifies and annotates:
 - Ribosomal RNA genes (5S, 16S, 23S)
 - Transfer RNA genes
 - Non-coding RNA elements
-- Oriention of replication (oriC/oriT)
+- Orientation of replication (oriC/oriT)
 
 Output files per genome:
 - `.gff3` — genome feature format annotation
@@ -76,7 +96,7 @@ Output files per genome:
 
 ---
 
-## 5. Pangenome Analysis (In Progress)
+## 6. Pangenome Analysis (In Progress)
 
 Pangenome analysis will be performed using Roary or Panaroo on the Bakta-annotated GFF3 files from all 9 passing genomes. The pangenome will be partitioned into:
 
@@ -93,6 +113,7 @@ Results will be used to identify surface-exposed proteins and known phage recept
 | Tool | Version | Conda Environment |
 |------|---------|------------------|
 | BUSCO | 5.x | busco |
+| QUAST | 4.6.3 | quast |
 | Bakta | 1.12.0 | bakta |
 | R | 4.4.1 | base |
 | ggplot2 | CRAN latest | base |
