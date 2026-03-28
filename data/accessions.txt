@@ -1,0 +1,16 @@
+# NCBI RefSeq Genome Accessions
+# Salmonella enterica genome assemblies
+# Download from: https://www.ncbi.nlm.nih.gov/assembly
+GCF_000007545.1
+GCF_000020745.1
+GCF_000020885.1
+GCF_000020925.1
+GCF_000022165.1
+GCF_000170215.1
+GCF_000170255.1
+GCF_000171255.1
+GCF_000171275.1
+GCF_000171315.1
+GCF_000171415.1
+GCF_000171515.1
+GCF_000171535.2
