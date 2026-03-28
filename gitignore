@@ -1,0 +1,33 @@
+# Large genomic data files - download from NCBI using accessions.txt
+*.fna
+*.fastq
+*.fastq.gz
+*.bam
+*.sam
+*.vcf
+
+# BUSCO output directories
+busco_*/
+busco_downloads/
+
+# Bakta output directories
+bakta_*/
+bakta_db/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# R temporary files
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Conda environment tarballs
+*.tar.xz
+*.tar.gz
+
+# Log files
+*.log
