@@ -30,17 +30,32 @@ Bioinformatics_Capstone_SYLVESTER/
 │
 ├── environment/
 │   ├── busco_env.yml          # BUSCO conda environment
-│   └── bakta_env.yml          # Bakta conda environment
+│   ├── bakta_env.yml          # Bakta conda environment
+│   └── quast_env.yml          # QUAST conda environment
 │
 ├── scripts/
 │   ├── genome_qc.R            # Assembly QC metrics (genome size, GC%, N50, etc.)
 │   ├── busco_summary.R        # BUSCO completeness visualization
+│   ├── run_quast.sh           # QUAST contiguity and correctness evaluation script
 │   └── run_bakta.sh           # Bakta annotation loop script
 │
-└── results/
-    ├── genome_qc_results.tsv  # Assembly QC metrics table
-    ├── busco_summary.tsv      # BUSCO completeness scores
-    └── figures/               # QC plots and visualizations
+├── results/
+│   ├── genome_qc_results.tsv  # Assembly QC metrics table
+│   ├── busco_summary.tsv      # BUSCO completeness scores
+│   └── figures/               # QC plots and visualizations
+│
+├── assembly_evaluation/
+│   ├── busco_summary.tsv      # BUSCO completeness scores for all 13 genomes
+│   ├── busco_completeness.png # BUSCO stacked bar chart
+│   ├── report.tsv             # QUAST assembly metrics table
+│   └── report.html            # QUAST interactive HTML report
+│
+└── genome_annotation/
+    ├── *.tsv                  # Bakta annotation tables (one per genome)
+    ├── *.hypotheticals.tsv    # Hypothetical protein annotations
+    ├── *.inference.tsv        # Inference evidence tables
+    ├── *.png                  # Circular genome plots
+    └── *.txt                  # Annotation summary files
 ```
 
 ---
@@ -157,6 +172,7 @@ bash scripts/run_bakta.sh
 - Raw genome files follow NCBI RefSeq naming: `GCF_XXXXXXXXX.X_ASMxxxxvX_genomic.fna`
 - BUSCO output folders: `busco_GCF_XXXXXXXXX.X_ASMxxxxvX_genomic/`
 - Bakta output folders: `bakta_GCF_XXXXXXXXX.X_ASMxxxxvX_genomic/`
+- Bakta annotation files per genome: `.tsv` (full annotation), `.hypotheticals.tsv`, `.inference.tsv`, `.txt` (summary), `.png` (circular plot)
 - QUAST output: `quast_results/`
 - Results files use descriptive names: `genome_qc_results.tsv`, `busco_summary.tsv`
 - Figures use descriptive prefixes: `plot_genome_size.png`, `busco_completeness.png`
