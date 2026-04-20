@@ -31,3 +31,4 @@ bakta_db/
 
 # Log files
 *.log
+.Rhistory
